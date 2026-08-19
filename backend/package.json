@@ -2,8 +2,7 @@
   "name": "reachinbox-backend",
   "version": "1.0.0",
   "description": "ReachInbox Email Scheduler Backend API and BullMQ Worker",
-  "main": "src/server.ts",
-  "entrypoint": "src/server.ts",
+  "main": "dist/server.js",
   "scripts": {
     "build": "prisma generate && tsc",
     "vercel-build": "prisma generate && tsc",
