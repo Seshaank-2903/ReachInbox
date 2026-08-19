@@ -1,0 +1,21 @@
+{
+  "name": "reachinbox-scheduler-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ReachInbox Email Scheduler Monorepo (Zero Docker Required)",
+  "scripts": {
+    "dev": "concurrently -n \"api,worker,frontend\" -c \"cyan,magenta,blue\" \"npm --prefix backend run dev\" \"npm --prefix backend run dev:worker\" \"npm --prefix frontend run dev\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:worker": "npm --prefix backend run dev:worker",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "load-test": "ts-node load-test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
