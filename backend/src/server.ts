@@ -34,7 +34,7 @@ async function initServer() {
   }
 }
 
-// Serverless request initialization guard for Vercel
+// Request initialization guard for Vercel & Express
 app.use(async (req, res, next) => {
   await initServer();
   next();
@@ -48,14 +48,14 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Standalone execution guard
-if (require.main === module) {
-  app.listen(config.port, '0.0.0.0', () => {
-    console.log('====================================================');
-    console.log(`[API Server] ReachInbox Backend running on port ${config.port}`);
-    console.log(`[API Server] Frontend URL configured as: ${config.frontendUrl}`);
-    console.log('====================================================');
-  });
-}
+// Server execution entrypoint
+const listenPort = process.env.PORT ? parseInt(process.env.PORT, 10) : config.port;
+
+app.listen(listenPort, '0.0.0.0', () => {
+  console.log('====================================================');
+  console.log(`[API Server] ReachInbox Backend running on port ${listenPort}`);
+  console.log(`[API Server] Frontend URL configured as: ${config.frontendUrl}`);
+  console.log('====================================================');
+});
 
 export default app;
